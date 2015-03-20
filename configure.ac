@@ -4,7 +4,7 @@
 AC_PREREQ([2.64])
 AC_INIT([LatCore],[0.1],[antonin.portelli@me.com],[LatCore])
 AC_CONFIG_AUX_DIR([.buildutils])
-AC_CONFIG_SRCDIR([lib/Global.cpp])
+AC_CONFIG_SRCDIR([lib/LatCore.cpp])
 AC_CONFIG_MACRO_DIR([.buildutils/m4])
 AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects foreign])
 AM_SILENT_RULES([yes])
