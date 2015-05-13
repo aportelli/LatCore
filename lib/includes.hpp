@@ -21,5 +21,6 @@
 #define	LatCore_includes_hpp_
 
 #include <config.h>
+#include <chrono>
 
 #endif // LatCore_includes_hpp_

@@ -19,12 +19,14 @@ libxml_la_SOURCES  = \
 libxml_la_CXXFLAGS = $(COM_CXXFLAGS) -Wno-sign-conversion
 
 libLatCore_la_SOURCES = \
+    Benchmark.cpp       \
     LatCore.cpp         \
     includes.hpp        \
     XmlReader.cpp       \
     XmlReader.hpp
 libLatCore_ladir = $(pkgincludedir)
 libLatCore_la_HEADERS = \
+    Benchmark.hpp       \
     LatCore.hpp         \
     XmlReader.hpp
 libLatCore_la_CXXFLAGS = $(COM_CXXFLAGS)
