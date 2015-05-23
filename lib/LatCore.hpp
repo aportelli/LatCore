@@ -32,14 +32,15 @@
 #include <cstdlib>
 
 // Eigen inclusion
+#if (defined __INTEL_COMPILER)
+#pragma warning disable 1682
+#elif (defined __GNUC__)||(defined __clang__)
 #pragma GCC diagnostic ignored "-Wdeprecated-register"
 #pragma GCC diagnostic ignored "-Wconversion"
+#endif
 
 #define EIGEN_DONT_PARALLELIZE
 #include <LatCore/Eigen/Dense>
-
-#pragma GCC diagnostic warning "-Wdeprecated-register"
-#pragma GCC diagnostic warning "-Wconversion"
 
 // namespace definition
 #define BEGIN_LATCORE_NAMESPACE namespace LatCore {
