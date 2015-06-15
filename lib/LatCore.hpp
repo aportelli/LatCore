@@ -35,7 +35,7 @@
 #if (defined __INTEL_COMPILER)
 #pragma warning disable 1682
 #elif (defined __GNUC__)||(defined __clang__)
-#pragma GCC diagnostic ignored "-Wdeprecated-register"
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #pragma GCC diagnostic ignored "-Wconversion"
 #endif
 
@@ -319,6 +319,8 @@ ProgressBar::ProgressBar(const A current, const B total, const Index nCol)
 , total_(static_cast<Index>(total))
 , nCol_(nCol)
 {}
+
+std::ostream & operator<<(std::ostream &out, const ProgressBar &&bar);
 
 END_LATCORE_NAMESPACE
 

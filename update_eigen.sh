@@ -2,6 +2,7 @@
 
 if (( $# != 1 )); then
     echo "usage: `basename $0` <archive>" 1>&2
+    exit 1
 fi
 ARC=$1
 
