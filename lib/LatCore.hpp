@@ -52,8 +52,10 @@
 #define DEBUG_MAT(m) std::cout << #m << "=\n" << m << std::endl
 
 // attribute to switch off unused warnings with gcc
-#ifndef __GNUC__
-#define __unused
+#ifdef __GNUC__
+#define __dumb __attribute__((unused))
+#else
+#define __dumb
 #endif
 
 // max length for paths
