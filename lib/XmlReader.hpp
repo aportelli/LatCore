@@ -78,6 +78,12 @@ public:
     template <typename T, typename... Strs>
     std::vector<T> getAllValues(const std::string &nodeName,
                                 Strs... nodeNames) const;
+    // XML structure test
+    template <typename... Strs>
+    static bool hasNode(const XmlNode *startNode, const std::string &nodeName,
+                        Strs... nodeNames);
+    template <typename... Strs>
+    bool hasNode(const std::string &nodeName, Strs... nodeNames) const;
 private:
     std::string           name_;
     tinyxml2::XMLDocument doc_;
@@ -94,7 +100,7 @@ const XmlNode * XmlReader::getFirstNode(const XmlNode *startNode,
                                         Strs... nodeNames)
 {
     static_assert(static_or<std::is_assignable<std::string, Strs>::value...>::value,
-                  "getFirstValue arguments are not compatible with std::string");
+                  "getFirstNode arguments are not compatible with std::string");
     
     const unsigned int nName  = sizeof...(nodeNames) + 1;
     const std::string  name[] = {nodeName, nodeNames...};
@@ -185,6 +191,45 @@ std::vector<T> XmlReader::getAllValues(const std::string &nodeName,
                                        Strs... nodeNames) const
 {
     return getAllValues<T>(root_, nodeName, nodeNames...);
+}
+
+// XML structure test //////////////////////////////////////////////////////////
+template <typename... Strs>
+bool XmlReader::hasNode(const XmlNode *startNode, const std::string &nodeName,
+             Strs... nodeNames)
+{
+    static_assert(static_or<std::is_assignable<std::string, Strs>::value...>::value,
+                  "hasNode arguments are not compatible with std::string");
+
+    const unsigned int nName  = sizeof...(nodeNames) + 1;
+    const std::string  name[] = {nodeName, nodeNames...};
+    const XmlNode      *node  = startNode;
+
+    if (!node)
+    {
+        XML_ERROR("root node is null, no XML file opened");
+    }
+    for (unsigned int i = 0; i < nName; ++i)
+    {
+        node = node->FirstChildElement(name[i].c_str());
+        if (!node)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+template <typename... Strs>
+bool XmlReader::hasNode(const std::string &nodeName, Strs... nodeNames) const
+{
+    if (!root_)
+    {
+        XML_ERROR("root node is null, no XML file opened");
+    }
+
+    return hasNode(root_, nodeName, nodeNames...);
 }
 
 END_LATCORE_NAMESPACE
