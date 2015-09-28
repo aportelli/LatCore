@@ -22,5 +22,7 @@
 
 #include <config.h>
 #include <chrono>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #endif // LatCore_includes_hpp_
