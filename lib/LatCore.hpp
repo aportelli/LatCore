@@ -176,7 +176,12 @@ struct static_or<> : std::true_type {};
 // Environment /////////////////////////////////////////////////////////////////
 void testFunction(void);
 
-// String conversions //////////////////////////////////////////////////////////
+// String utilities ////////////////////////////////////////////////////////////
+inline std::string extension(const std::string fileName)
+{
+    return fileName.substr(fileName.find_last_of(".") + 1);
+}
+
 template <typename T>
 inline T strTo(const std::string &str)
 {
