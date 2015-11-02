@@ -72,6 +72,10 @@ Class & operator=(const ExprType<Derived> &m)\
     return *this;\
 }
 
+// source location
+#define LATCORE_SRC_LOC strFrom(__FUNCTION__) + " at " + strFrom(__FILE__)\
+                        + ":" + strFrom(__LINE__)
+
 BEGIN_LATCORE_NAMESPACE
 
 // Eigen type aliases //////////////////////////////////////////////////////////

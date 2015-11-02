@@ -60,11 +60,26 @@ void XmlReader::open(const string &fileName)
 }
 
 // XML structure access ////////////////////////////////////////////////////////
-const XmlNode * XmlReader::getNextNode(const XmlNode *node)
+const XmlNode * XmlReader::getNextNode(const XmlNode *node,
+                                       const string &nodeName)
+{
+    const char *pt = (nodeName.empty()) ? nullptr : nodeName.c_str();
+    
+    if (node)
+    {
+        return node->NextSiblingElement(pt);
+    }
+    else
+    {
+        return nullptr;
+    }
+}
+
+const XmlNode * XmlReader::getNextSameNode(const XmlNode *node)
 {
     if (node)
     {
-        return node->NextSiblingElement();
+        return getNextNode(node, node->GetText());
     }
     else
     {

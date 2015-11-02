@@ -36,9 +36,7 @@ public:
     XmlParsing(std::string msg, std::string loc);
 };
 
-#define SRC_LOC strFrom(__FUNCTION__) + " at " + strFrom(__FILE__) + ":"\
-                + strFrom(__LINE__)
-#define XML_ERROR(msg) throw(XmlParsing(msg, SRC_LOC))
+#define XML_ERROR(msg) throw(XmlParsing(msg, LATCORE_SRC_LOC))
 
 /******************************************************************************
  *                        XML parameter file reader                           *
@@ -63,7 +61,9 @@ public:
     template <typename... Strs>
     const XmlNode * getFirstNode(const std::string &nodeName,
                                  Strs... nodeNames) const;
-    static const XmlNode * getNextNode(const XmlNode *node);
+    static const XmlNode * getNextNode(const XmlNode *node,
+                                       const std::string &nodeName = "");
+    static const XmlNode * getNextSameNode(const XmlNode *node);
     template <typename T>
     static T getValue(const XmlNode *node);
     template <typename T, typename... Strs>
@@ -180,7 +180,7 @@ std::vector<T> XmlReader::getAllValues(const XmlNode *startNode,
     while (node)
     {
         value.push_back(getValue<T>(node));
-        node = getNextNode(node);
+        node = getNextSameNode(node);
     }
     
     return value;
