@@ -1,7 +1,7 @@
 # Process this file with autoconf to produce a configure script.
 
 # Initialization
-AC_PREREQ([2.64])
+AC_PREREQ([2.63])
 AC_INIT([LatCore],[0.1],[antonin.portelli@me.com],[LatCore])
 AC_CONFIG_AUX_DIR([.buildutils])
 AC_CONFIG_SRCDIR([lib/LatCore.cpp])
