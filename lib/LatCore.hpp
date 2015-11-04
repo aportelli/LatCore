@@ -79,7 +79,7 @@ Class & operator=(const ExprType<Derived> &m)\
 BEGIN_LATCORE_NAMESPACE
 
 // Eigen type aliases //////////////////////////////////////////////////////////
-const int dynamic = -1;
+const int dynamic = Eigen::Dynamic;
 
 // array types
 template <typename Derived>
@@ -145,10 +145,14 @@ template <typename Derived>
 using ConstCol = typename Derived::ConstColXpr;
 
 // map type
-template <typename Derived>
-using Map = Eigen::Map<Derived>;
-template <typename Derived>
-using ConstMap = Eigen::Map<const Derived>;
+template <int stride>
+using InnerStride = Eigen::InnerStride<stride>;
+template <int rowStride, int colStride>
+using Stride = Eigen::Stride<rowStride, colStride>;
+template <typename Derived, typename StrideType = Stride<0, 0>>
+using Map = Eigen::Map<Derived, Eigen::Unaligned, StrideType>;
+template <typename Derived, typename StrideType = Stride<0, 0>>
+using ConstMap = Eigen::Map<const Derived, Eigen::Unaligned, StrideType>;
 
 // Index type //////////////////////////////////////////////////////////////////
 typedef MatBase<int>::Index Index;
