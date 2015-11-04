@@ -79,3 +79,18 @@ int LatCore::mkdir(const std::string dirName)
         return 0;
     }
 }
+
+string LatCore::basename(const string &s)
+{
+    constexpr char sep = '/';
+    size_t         i   = s.rfind(sep, s.length());
+    
+    if (i != string::npos)
+    {
+        return s.substr(i+1, s.length() - i);
+    }
+    else
+    {
+        return "";
+    }
+}
