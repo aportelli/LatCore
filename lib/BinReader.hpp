@@ -156,6 +156,9 @@ T BinReader::read(void)
     return x;
 }
 
+template <>
+std::string BinReader::read(void);
+
 template <typename T>
 MatBase<T> BinReader::read(const Index nRow, const Index nCol)
 {
