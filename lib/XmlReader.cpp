@@ -79,7 +79,7 @@ const XmlNode * XmlReader::getNextSameNode(const XmlNode *node)
 {
     if (node)
     {
-        return getNextNode(node, node->GetText());
+        return getNextNode(node, node->Name());
     }
     else
     {
