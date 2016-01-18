@@ -91,6 +91,6 @@ string LatCore::basename(const string &s)
     }
     else
     {
-        return "";
+        return s;
     }
 }
