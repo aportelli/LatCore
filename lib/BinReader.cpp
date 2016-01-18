@@ -71,7 +71,10 @@ std::string BinReader::read(void)
     while (c != '\n')
     {
         c = read<char>();
-        s.push_back(c);
+        if (c != '\n')
+        {
+            s.push_back(c);
+        }
     }
     
     return s;
