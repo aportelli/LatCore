@@ -40,6 +40,7 @@
 #endif
 
 #define EIGEN_DONT_PARALLELIZE
+#define EIGEN_MATRIXBASE_PLUGIN <LatCore/EigenPlugin.hpp>
 #include <LatCore/Eigen/Dense>
 
 // namespace definition

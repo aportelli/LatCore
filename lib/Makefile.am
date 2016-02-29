@@ -29,6 +29,7 @@ libLatCore_ladir = $(pkgincludedir)
 libLatCore_la_HEADERS = \
     Benchmark.hpp       \
     BinReader.hpp       \
+    EigenPlugin.hpp     \
     LatCore.hpp         \
     XmlReader.hpp
 libLatCore_la_CXXFLAGS = $(COM_CXXFLAGS)
