@@ -20,11 +20,14 @@
 #ifndef LatCore_Global_hpp_
 #define	LatCore_Global_hpp_
 
+#include <array>
 #include <complex>
 #include <fstream>
 #include <functional>
 #include <iostream>
+#include <map>
 #include <memory>
+#include <stack>
 #include <string>
 #include <sstream>
 #include <type_traits>
