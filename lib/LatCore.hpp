@@ -20,19 +20,31 @@
 #ifndef LatCore_Global_hpp_
 #define	LatCore_Global_hpp_
 
+#include <algorithm>
 #include <array>
 #include <complex>
 #include <fstream>
 #include <functional>
 #include <iostream>
+#include <iomanip>
+#include <iterator>
+#include <limits>
 #include <map>
 #include <memory>
+#include <set>
 #include <stack>
 #include <string>
 #include <sstream>
 #include <type_traits>
+#include <utility>
 #include <vector>
+#include <cfloat>
+#include <climits>
+#include <cmath>
+#include <cstdio>
 #include <cstdlib>
+#include <sys/stat.h>
+#include <unistd.h>
 
 // Eigen inclusion
 #if (defined __INTEL_COMPILER)
