@@ -36,6 +36,7 @@
 #include <string>
 #include <sstream>
 #include <type_traits>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 #include <cfloat>
