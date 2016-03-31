@@ -94,3 +94,29 @@ string LatCore::basename(const string &s)
         return s;
     }
 }
+
+VarName::VarName(const string defName)
+: defName_(defName)
+{}
+
+string VarName::getName(const Index i) const
+{
+    if (hasName(i))
+    {
+        return name_.at(i);
+    }
+    else
+    {
+        return defName_ + "_" + strFrom(i);
+    }
+}
+
+void VarName::setName(const Index i, const string name)
+{
+    name_[i] = name;
+}
+
+bool VarName::hasName(const Index i) const
+{
+    return (name_.find(i) != name_.end());
+}

@@ -360,6 +360,24 @@ ProgressBar::ProgressBar(const A current, const B total, const Index nCol)
 
 std::ostream & operator<<(std::ostream &out, const ProgressBar &&bar);
 
+// named variable interface ////////////////////////////////////////////////////
+class VarName
+{
+public:
+    // constructor
+    VarName(const std::string defName);
+    // destructor
+    virtual ~VarName(void) = default;
+    // access
+    std::string getName(const Index i) const;
+    void        setName(const Index i, const std::string name);
+    // test
+    bool hasName(const Index i) const;
+private:
+    std::string                            defName_;
+    std::unordered_map<Index, std::string> name_;
+};
+
 END_LATCORE_NAMESPACE
 
 #endif // LatCore_Global_hpp_
