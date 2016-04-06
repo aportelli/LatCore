@@ -123,7 +123,8 @@ void BinReader::read(T *pt, Index n)
 {
     if (file_ != nullptr)
     {
-        file_->read(reinterpret_cast<char *>(pt), sizeof(T)*n);
+        file_->read(reinterpret_cast<char *>(pt),
+                    static_cast<long>(sizeof(T))*n);
         if (endianness_ != ByteManip::getHostEndianness())
         {
             for (Index i = 0; i < n; ++i)

@@ -31,6 +31,8 @@
 #include <limits>
 #include <map>
 #include <memory>
+#include <queue>
+#include <random>
 #include <set>
 #include <stack>
 #include <string>
@@ -44,6 +46,7 @@
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -51,13 +54,19 @@
 #if (defined __INTEL_COMPILER)
 #pragma warning disable 1682
 #elif (defined __GNUC__)||(defined __clang__)
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wconversion"
 #endif
 
 #define EIGEN_DONT_PARALLELIZE
 #define EIGEN_MATRIXBASE_PLUGIN <LatCore/EigenPlugin.hpp>
 #include <LatCore/Eigen/Dense>
+
+#if (defined __INTEL_COMPILER)
+#pragma warning enable 1682
+#elif (defined __GNUC__)||(defined __clang__)
+#pragma GCC diagnostic pop
+#endif
 
 // namespace definition
 #define BEGIN_LATCORE_NAMESPACE namespace LatCore {
@@ -176,6 +185,9 @@ typedef MatBase<int>::Index Index;
 
 #define FOR_VEC(vec, i)  for (LatCore::Index i = 0; i < (vec).size(); ++i)
 #define FOR_ARRAY(ar, i) FOR_VEC(ar, i)
+
+// Random seed type ////////////////////////////////////////////////////////////
+typedef std::random_device::result_type SeedType;
 
 // Type utilities //////////////////////////////////////////////////////////////
 // pointer type test
