@@ -19,12 +19,12 @@
 
 Derived pInverse(const double tolerance = 1.0e-10)
 {
-    auto       svd   = jacobiSvd(Eigen::ComputeThinU|Eigen::ComputeThinV);
-    const auto u     = svd.matrixU();
-    const auto v     = svd.matrixV();
-    auto       s     = svd.singularValues();
-    double     maxsv = 0.;
-    uint       elim  = 0;
+    auto         svd   = jacobiSvd(Eigen::ComputeThinU|Eigen::ComputeThinV);
+    const auto   u     = svd.matrixU();
+    const auto   v     = svd.matrixV();
+    auto         s     = svd.singularValues();
+    double       maxsv = 0.;
+    unsigned int elim  = 0;
     
     for (Index i = 0; i < s.rows(); ++i)
     {

@@ -1,22 +1,16 @@
-COM_CXXFLAGS = -Wall -Wconversion
+COM_CXXFLAGS = -Wall
 if CXX_GNU
-    COM_CXXFLAGS += -W -pedantic
+    COM_CXXFLAGS += -W -pedantic -Wno-deprecated-declarations
 else
 if CXX_INTEL
-    COM_CXXFLAGS +=
+    COM_CXXFLAGS += -wd1682
 endif
 endif
 
 include eigen_files.mk
 
 nobase_dist_pkginclude_HEADERS = $(eigen_files) XML/tinyxml2.hpp
-noinst_LTLIBRARIES             = libxml.la
 lib_LTLIBRARIES                = libLatCore.la
-
-libxml_la_SOURCES  = \
-    XML/tinyxml2.hpp \
-    XML/tinyxml2.cpp
-libxml_la_CXXFLAGS = $(COM_CXXFLAGS) -Wno-sign-conversion
 
 libLatCore_la_SOURCES = \
     Benchmark.cpp       \
@@ -24,7 +18,9 @@ libLatCore_la_SOURCES = \
     LatCore.cpp         \
     includes.hpp        \
     XmlReader.cpp       \
-    XmlReader.hpp
+    XmlReader.hpp       \
+    XML/tinyxml2.hpp    \
+    XML/tinyxml2.cpp
 libLatCore_ladir = $(pkgincludedir)
 libLatCore_la_HEADERS = \
     Benchmark.hpp       \
@@ -33,6 +29,5 @@ libLatCore_la_HEADERS = \
     LatCore.hpp         \
     XmlReader.hpp
 libLatCore_la_CXXFLAGS = $(COM_CXXFLAGS)
-libLatCore_la_LIBADD   = libxml.la
 
 ACLOCAL_AMFLAGS = -I .buildutils/m4

@@ -22,6 +22,7 @@
 
 #include <algorithm>
 #include <array>
+#include <chrono>
 #include <complex>
 #include <fstream>
 #include <functional>
@@ -51,22 +52,9 @@
 #include <unistd.h>
 
 // Eigen inclusion
-#if (defined __INTEL_COMPILER)
-#pragma warning disable 1682
-#elif (defined __GNUC__)||(defined __clang__)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wconversion"
-#endif
-
 #define EIGEN_DONT_PARALLELIZE
 #define EIGEN_MATRIXBASE_PLUGIN <LatCore/EigenPlugin.hpp>
 #include <LatCore/Eigen/Dense>
-
-#if (defined __INTEL_COMPILER)
-#pragma warning enable 1682
-#elif (defined __GNUC__)||(defined __clang__)
-#pragma GCC diagnostic pop
-#endif
 
 // namespace definition
 #define BEGIN_LATCORE_NAMESPACE namespace LatCore {
