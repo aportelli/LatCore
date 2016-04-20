@@ -30,10 +30,12 @@
 #include <iomanip>
 #include <iterator>
 #include <limits>
+#include <list>
 #include <map>
 #include <memory>
 #include <queue>
 #include <random>
+#include <regex>
 #include <set>
 #include <stack>
 #include <string>

@@ -17,6 +17,7 @@ libLatCore_la_SOURCES = \
     BinReader.cpp       \
     LatCore.cpp         \
     includes.hpp        \
+    OptParser.cpp       \
     XmlReader.cpp       \
     XmlReader.hpp       \
     XML/tinyxml2.hpp    \
@@ -27,6 +28,7 @@ libLatCore_la_HEADERS = \
     BinReader.hpp       \
     EigenPlugin.hpp     \
     LatCore.hpp         \
+    OptParser.hpp       \
     XmlReader.hpp
 libLatCore_la_CXXFLAGS = $(COM_CXXFLAGS)
 
