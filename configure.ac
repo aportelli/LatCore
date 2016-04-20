@@ -2,7 +2,7 @@
 
 # Initialization
 AC_PREREQ([2.63])
-AC_INIT([LatCore],[0.1],[antonin.portelli@me.com],[LatCore])
+AC_INIT([LatCore],[1.0],[antonin.portelli@me.com],[LatCore])
 AC_CONFIG_AUX_DIR([.buildutils])
 AC_CONFIG_SRCDIR([lib/LatCore.cpp])
 AC_CONFIG_MACRO_DIR([.buildutils/m4])
