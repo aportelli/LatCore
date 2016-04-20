@@ -17,7 +17,8 @@
  * along with LatCore.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <XmlReader.hpp>
+#include <LatCore/XmlReader.hpp>
+#include <LatCore/includes.hpp>
 
 using namespace std;
 using namespace LatCore;
