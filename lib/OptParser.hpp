@@ -34,7 +34,7 @@ public:
 private:
     struct OptPar
     {
-        std::string shortName, longName, defaultVal;
+        std::string shortName, longName, defaultVal, helpMessage;
         OptType     type;
         bool        optional;
     };
@@ -51,23 +51,34 @@ public:
     // access
     void addOption(const std::string shortName, const std::string longName,
                    const OptType type, const bool optional = false,
+                   const std::string helpMessage = "",
                    const std::string defaultVal = "");
     bool gotOption(const std::string name) const;
     template <typename T = std::string>
     T    optionValue(const std::string name) const;
-    const std::list<std::string> & getArgs(void) const;
+    const std::vector<std::string> & getArgs(void) const;
     // parse
     bool parse(int argc, char *argv[]);
+    // print option list
+    friend std::ostream & operator<<(std::ostream &out,
+                                     const OptParser &parser);
 private:
     // find option index
     int optIndex(const std::string name) const;
+    // option name for messages
+    static std::string optName(const OptPar &opt);
 private:
-    std::vector<OptPar>     opt_;
-    std::vector<OptRes>     result_;
-    std::list<std::string>  arg_;
-    static const std::regex optRegex_;
+    std::vector<OptPar>      opt_;
+    std::vector<OptRes>      result_;
+    std::vector<std::string> arg_;
+    static const std::regex  optRegex_;
 };
 
+std::ostream & operator<<(std::ostream &out, const OptParser &parser);
+
+/******************************************************************************
+ *                     OptParser template implementation                      *
+ ******************************************************************************/
 template <typename T>
 T OptParser::optionValue(const std::string name) const
 {

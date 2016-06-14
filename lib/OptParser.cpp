@@ -35,15 +35,17 @@ const regex OptParser::optRegex_(optRegex);
 void OptParser::addOption(const std::string shortName,
                           const std::string longName,
                           const OptType type, const bool optional,
+                          const std::string helpMessage,
                           const std::string defaultVal)
 {
     OptPar par;
     
-    par.shortName  = shortName;
-    par.longName   = longName;
-    par.defaultVal = defaultVal;
-    par.type       = type;
-    par.optional   = optional;
+    par.shortName   = shortName;
+    par.longName    = longName;
+    par.defaultVal  = defaultVal;
+    par.helpMessage = helpMessage;
+    par.type        = type;
+    par.optional    = optional;
     opt_.push_back(par);
 }
 
@@ -65,7 +67,7 @@ bool OptParser::gotOption(const std::string name) const
     }
 }
 
-const list<string> & OptParser::getArgs(void) const
+const vector<string> & OptParser::getArgs(void) const
 {
     return arg_;
 }
@@ -97,10 +99,9 @@ bool OptParser::parse(int argc, char *argv[])
             // should it be a value?
             if (expectVal >= 0)
             {
-                cerr << "warning: expected value for option -";
-                cerr << opt_[expectVal].shortName << "/--";
-                cerr << opt_[expectVal].longName << ", got option '";
-                cerr << arg.front() << "' instead" << endl;
+                cerr << "warning: expected value for option ";
+                cerr << optName(opt_[expectVal]);
+                cerr << ", got option '" << arg.front() << "' instead" << endl;
                 expectVal = -1;
                 isCorrect = false;
             }
@@ -192,9 +193,8 @@ bool OptParser::parse(int argc, char *argv[])
     }
     if (expectVal >= 0)
     {
-        cerr << "warning: expected value for option -";
-        cerr << opt_[expectVal].shortName << "/--";
-        cerr << opt_[expectVal].longName << endl;
+        cerr << "warning: expected value for option ";
+        cerr << optName(opt_[expectVal]) << endl;
         expectVal = -1;
         isCorrect = false;
     }
@@ -202,8 +202,8 @@ bool OptParser::parse(int argc, char *argv[])
     {
         if (!opt_[i].optional and !result_[i].present)
         {
-            cerr << "warning: mandatory option -" << opt_[i].shortName;
-            cerr << "/--" << opt_[i].longName << " is missing" << endl;
+            cerr << "warning: mandatory option " << optName(opt_[i]);
+            cerr << " is missing" << endl;
             isCorrect = false;
         }
     }
@@ -229,3 +229,44 @@ int OptParser::optIndex(const string name) const
     }
 }
 
+// option name for messages ////////////////////////////////////////////////////
+std::string OptParser::optName(const OptPar &opt)
+{
+    std::string res = "";
+    
+    if (!opt.shortName.empty())
+    {
+        res += "-" + opt.shortName;
+        if (!opt.longName.empty())
+        {
+            res += "/";
+        }
+    }
+    if (!opt.longName.empty())
+    {
+        res += "--" + opt.longName;
+        if (opt.type == OptParser::OptType::value)
+        {
+            res += "=";
+        }
+    }
+    
+    return res;
+}
+
+// print option list ///////////////////////////////////////////////////////////
+std::ostream & LatCore::operator<<(std::ostream &out, const OptParser &parser)
+{
+    for (auto &o: parser.opt_)
+    {
+        out << setw(20) << OptParser::optName(o);
+        out << ": " << o.helpMessage;
+        if (!o.defaultVal.empty())
+        {
+            out << " (default: " << o.defaultVal << ")";
+        }
+        out << endl;
+    }
+    
+    return out;
+}
