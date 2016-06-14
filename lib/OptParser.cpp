@@ -67,7 +67,7 @@ bool OptParser::gotOption(const std::string name) const
     }
 }
 
-const list<string> & OptParser::getArgs(void) const
+const vector<string> & OptParser::getArgs(void) const
 {
     return arg_;
 }
@@ -259,7 +259,7 @@ std::ostream & LatCore::operator<<(std::ostream &out, const OptParser &parser)
 {
     for (auto &o: parser.opt_)
     {
-        out << setw(15) << OptParser::optName(o);
+        out << setw(20) << OptParser::optName(o);
         out << ": " << o.helpMessage;
         if (!o.defaultVal.empty())
         {
