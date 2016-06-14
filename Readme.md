@@ -12,7 +12,7 @@ Required for LatAnalyze 3.2.
 Addition:
 * CL parser can generates help messages
 
-Changes:
+Change:
 * CL parser now return arguments as a `vector`
 
 #### v1.0
