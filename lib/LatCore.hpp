@@ -312,6 +312,19 @@ inline UVec strTo<UVec>(const std::string &str)
     return res;
 }
 
+template <typename T>
+void tokenReplace(std::string &str, const std::string token,
+                  const T &x, const std::string mark = "@")
+{
+    std::string fullToken = mark + token + mark;
+    
+    auto pos = str.find(fullToken);
+    if (pos != std::string::npos)
+    {
+        str.replace(pos, fullToken.size(), strFrom(x));
+    }
+}
+
 // Manifest file reader ////////////////////////////////////////////////////////
 inline std::vector<std::string> readManifest(const std::string manFileName)
 {
@@ -363,6 +376,7 @@ ProgressBar::ProgressBar(const A current, const B total, const Index nCol)
 std::ostream & operator<<(std::ostream &out, const ProgressBar &&bar);
 
 // named variable interface ////////////////////////////////////////////////////
+// FIXME: check redundant names and variable number limit
 class VarName
 {
 public:
