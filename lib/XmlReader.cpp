@@ -43,19 +43,14 @@ void XmlReader::open(const string &fileName)
     doc_.LoadFile(name_.c_str());
     if (doc_.Error())
     {
-        string errMsg1, errMsg2;
+        string errMsg;
         
-        if (doc_.GetErrorStr1())
+        if (doc_.ErrorStr())
         {
-            errMsg1 = doc_.GetErrorStr1();
-        }
-        if (doc_.GetErrorStr2())
-        {
-            errMsg2 = doc_.GetErrorStr2();
+            errMsg = doc_.ErrorStr();
         }
         XML_ERROR("cannot open file " + fileName + " [tinyxml2 code "
-                  + strFrom(doc_.ErrorID()) + ": " + errMsg1 + " - "
-                  + errMsg2 + "]");
+                  + strFrom(doc_.ErrorID()) + ": " + errMsg + "]");
     }
     root_ = doc_.RootElement();
 }
