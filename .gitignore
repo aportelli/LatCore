@@ -22,3 +22,7 @@ aclocal.m4
 # Eigen headers
 lib/Eigen/*
 lib/eigen_files.mk
+
+# VS Code Studio stuff
+.vscode
+*.code-workspace
