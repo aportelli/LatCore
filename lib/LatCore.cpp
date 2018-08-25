@@ -95,6 +95,21 @@ string LatCore::basename(const string &s)
     }
 }
 
+std::string LatCore::dirname(const std::string &s)
+{
+    constexpr char sep = '/';
+    size_t         i   = s.rfind(sep, s.length());
+    
+    if (i != std::string::npos)
+    {
+        return s.substr(0, i);
+    }
+    else
+    {
+        return "";
+    }
+}
+
 VarName::VarName(const string defName)
 : defName_(defName)
 {}

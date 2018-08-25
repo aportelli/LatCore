@@ -349,8 +349,9 @@ inline std::vector<std::string> readManifest(const std::string manFileName)
 // Recursive directory creation ////////////////////////////////////////////////
 int mkdir(const std::string dirName);
 
-// C++ version of basename /////////////////////////////////////////////////////
+// C++ version of basename/dirname /////////////////////////////////////////////
 std::string basename(const std::string& s);
+std::string dirname(const std::string& s);
 
 // Progress bar class //////////////////////////////////////////////////////////
 class ProgressBar
